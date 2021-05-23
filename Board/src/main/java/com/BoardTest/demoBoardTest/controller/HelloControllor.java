@@ -5,8 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Scanner;
+
+
 @Controller
 public class HelloControllor {
+
+    Scanner scan = new Scanner(System.in);
 
     @GetMapping
     public String Hello(Model model){
@@ -23,11 +28,21 @@ public class HelloControllor {
         model.addAttribute("name",name);
         model.addAttribute("gender",gender);
         model.addAttribute("age",age);
+        // return은 html을 따름
         return "hello";
     }
     @RequestMapping("test")
-    private void test(){
-        return;
+    public String test(Model model){
+        int value = 100;
+        model.addAttribute("value",value);
+
+        if (value == 100) {
+            System.out.println("If");
+            return "test";
+        }else{
+            System.out.println("Else");
+            return "test2";
+        }
     }
 
     @RequestMapping("test2")
